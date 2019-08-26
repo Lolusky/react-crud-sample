@@ -1,0 +1,71 @@
+﻿@model ReactWeb.Models.TableConfig
+@using Newtonsoft.Json
+@{
+	ViewBag.Title = "Home Page";
+
+	var data = Newtonsoft.Json.JsonConvert.SerializeObject(Model
+			   ,
+			   new JsonSerializerSettings
+			   {
+				   ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver(),
+				   DateFormatString = System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern
+
+			   });
+
+}
+
+<style>
+	div.main_box{
+		margin: 20px;
+	}
+		div.main_box table.main_table tr td:first-child, div.main_box table.main_table tr td:last-child, .btn-col {
+			width: 30px;
+		}
+
+	table.table-child{
+		width: 100%;
+	}
+	div.screen_cap {
+		position: fixed;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		z-index: 200000;
+		background-color: rgba(229, 227, 227, 0.68);
+		width: 100%;
+		height: 100%;
+		padding-top: 300px;
+		/*text-align: center;*/
+	}
+
+		div.screen_cap div.edit_box {
+			padding-top: 35px;
+			position: relative;
+			border-radius: 4px;
+			background-color: #f3f1f1;
+			border: solid 1px #ccc;
+			width: 650px;
+			height: auto;
+			margin: 0 auto;
+		}
+
+			div.screen_cap div.edit_box .row {
+				margin-right: 15px;
+				margin-left: 15px;
+			}
+
+			div.screen_cap div.edit_box .btn-close {
+				right: 5px;
+				top: 5px;
+				position: absolute;
+			}
+</style>
+
+<div class="row">
+	<div id="app-form" data-state="@data" class="col-md-12 " >
+
+	</div>
+</div>
+
+<script src="~/Scripts/react/dist/tablelist.js"></script>
